@@ -252,7 +252,7 @@ int main()
 	return 0;
 }
 
-## 4.5.2 数字转字符
+### 4.5.2 数字转字符
 
 - 函数to_string(const char str ) ，需要包含头文件string
 
@@ -271,7 +271,7 @@ int main()
 	return 0;
 }
 
-## 4.5.3 字符串反转
+### 4.5.3 字符串反转
 
 - 参考代码：
 
