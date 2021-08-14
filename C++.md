@@ -298,9 +298,14 @@ int main()
 ## 5.3 RTX操作系统
 
 - RTX： Real - Time  eXtension，专门为ARM设计的操作系统。
+
 - M3/M4/M7可以实现零中断延时，Keil自带的操作系统，无需移植；反映 RTOS 实时性的两个重要指标：一个是中断延迟时间，另一个是任务切换时间。
+
 - RTX5的典型需求是5Kb的ROM空间和500字节的ROM。
-- 在Keil中配置（RTE），选中CMSIS->CORE、RTOS2(API)->KEil RTX5和Device->Startup，即搭建好了运行RTX5的基本配置。
+
+- 在Keil中配置（RTE），选中CMSIS->CORE、RTOS2(API)->KEil RTX5和Device->Startup，即搭建好了运行RTX5的基本配置，如下图所示。
+
+  ![keil_rtx](./image/keil_rtx.jpg)
 
 - 数量不限的任务数量，254级优先级。
 
