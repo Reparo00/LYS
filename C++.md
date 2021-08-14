@@ -76,6 +76,12 @@
 
 - 内联函数，是一种更安全的宏；解决一些频繁调用的函数大量消耗**栈**空间的问题。
 
+## 1.12 cin
+
+- while (  cin>>in)  {   }  结束输入的操作： 输入结束后，按回车，在新行输入Ctrl+z并回车 。
+
+
+
 # 二、继承
 
 ## 2.1 虚函数
@@ -265,14 +271,70 @@ int main()
 	return 0;
 }
 
+## 4.5.3 字符串反转
 
+- 参考代码：
+
+  如实现：    abcd       ----->       dcba
+
+  #include <iostream>
+  using namespace std;
+  #include <string>
+  int main()
+  {
+  	string a, b;
+  	cout << "输入一个字符串：" << endl;
+  	getline(cin, a);
+  	for (int i = 0; i < a.size(); i++)
+  	{
+  		b.push_back(a.at(a.size() - i - 1));
+  	}
+  	cout << "字符串逆序后："<<b.c_str() << endl;
+  	system("pause");
+  	return 0;
+  }
+
+### 4.5.4 每个单词逆序输出
+
+- 参考代码：
+
+  如实现       I am a student    ----->   I ma a tneduts
+
+  #include <iostream>
+  using namespace std;
+  #include <string>
+  #include<vector>
+  #include<algorithm>    //  reverse(头，尾)
+
+  int main()
+  {
+  	// 实现：   I am a student   ----->   I ma a tneduts
+  	string in;
+  	vector<string>v;
+  	cout << "输入一个字符串，输入结束后按回车，再ctrl+z，再按回车退出输入" << endl;
+
+  	while (cin>>in) {
+  		v.push_back(in);
+  	}
+  	for (int i=0;i<v.size();i++){
+  		reverse(v[i].begin(),v[i].end());
+  	}
+  	cout << "每个单词反转后输出结果：" << endl;
+  	for (string str:v){
+  		cout << str << " ";
+  	}
+  	
+  	return 0;
+  }
 
 ## 4.6 堆和栈
 
 - 栈（stack）：先入后出，编译器自动分配释放，存放基本数据类型和堆中对象的引用。
 - 堆（heap）：顺序随意，程序猿分配释放，存放对象。
 
-# 五、嵌入式
+
+
+# 五、嵌入式/硬件 等
 
 ## 5.1 线程和进程
 
@@ -294,6 +356,7 @@ int main()
 - 不可以传参，无返回值。
 - 中断区别于DMA：中断需要CPU参与，DMA没有。
 - 中断服务函数：不可有阻塞操作，因为中断时是完全占用内核的，不存在调度。
+- 中断是异步，**异常**是同步。
 
 ## 5.3 RTX操作系统
 
@@ -325,7 +388,7 @@ int main()
 
   （6）RTX_config.h : 可以配置、裁剪RTX系统，如OS_TICK_FREQ   1000 表示系统计数1000次时，运行1秒。
 
-## 5.4 硬件
+## 5.4 名词/常考
 
 - 推挽输出：可输出高或低电平；开漏输出：只输出低电平。
 
@@ -353,6 +416,45 @@ int main()
 
   （3）伪距定位法。
 
+- **PCB:**
+
+  （1）走线宽度：1A   -------   40mil；
+
+  （2）ctrl + m ：测量距离；
+
+  （3）ctrl + g ：修改虽小移动间距；
+  
+  （4）英文大写模式下，shift + S  单层/多层显示，按 “ * ” 切换层；
+  
+- **SPI：**
+
+​       （1）同步通信，全双工，4根线 SCK、CS、MOSI和MISO ；
+
+​	   （2）常见的支持SPI的芯片：AD7606、UZ2400、AD9361；
+
+​       （3）SPI有四种模式,mode0和mode3较为常见：
+
+![SPI](./image/spi.png)
+
+- **IIC：**
+
+  （1）同步通信，半双工，2根线 SCL、SDA ；
+
+  （2）常见的支持IIC的芯片： AT24C01A 存储芯片；
+
+  （3）IIC传输速率可达几百kb，SPI可以几兆，IIC速率比SPI慢一些。
+
+- UART：
+
+  （1）异步通信，全双工；
+
+  （2） USART：universal synchronous asynchronous receiver and transmitter  通用同步异步收发器；
+             UART：universal asynchronous receiver and transmitter  通用异步收发器 ；
+
+  （2）波特率计算：
+
+  ![Baud Rate](./image/baudrate.png)
+
 ## 5.5 ARM相关
 
 - **ARM-A：** 应用级，高性能。
@@ -366,8 +468,6 @@ int main()
 - ARM的bin文件：不带地址的文件（烧写时需要用户指定地址）；hex文件是带地址的文件。
 
 - ARM的Keil工程中，后缀为.map的文件，可以查看本项目代码占用的空间。
-
-
 
 
 
