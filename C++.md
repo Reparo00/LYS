@@ -382,7 +382,7 @@ int main()
 
 - 内核、shell、文件系统和应用程序 。 内核、shell和文件系统一起形成了基本的操作系统结构，它们使得用户可以运行程序、管理文件并使用系统。
 
-  ![1628930120744](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/1628930120744.png)
+  ![123](./image/123.png)
 
 ## 7.2 常用指令
 
