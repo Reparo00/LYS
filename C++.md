@@ -332,6 +332,47 @@ int main()
 - 栈（stack）：先入后出，编译器自动分配释放，存放基本数据类型和堆中对象的引用。
 - 堆（heap）：顺序随意，程序猿分配释放，存放对象。
 
+## 4.7 二分查找
+
+- 注意： 链表无法使用二分查找 ；**数组**递增或递减。
+- 参考代码：
+
+#include<iostream>
+using namespace std;
+
+int SearchBin(int arr[],int low,int high,int key)
+{
+	if (low<=high)
+	{
+		int mid = (low + high) / 2;
+		if (key == arr[mid]) {
+			return mid;
+		}
+		else if (key > arr[mid]) {
+			return SearchBin(arr,mid+1,high,key);
+		}
+		else if (key < arr[mid]) {
+			return SearchBin(arr, low, mid-1, key);
+		}
+	}
+	else {
+		return -1;
+	}
+}
+
+int main()
+{
+	int arr[] = {1,20,24,25,28,40,102,198,240};
+	int num = 0;
+	int len = sizeof(arr) / sizeof(arr[0]);
+	num = SearchBin(arr,0,len,28);
+	cout << "数组arr中元素28所在的序号为：" << num << endl;
+	
+
+	system("pause");
+	return 0;
+}
+
 
 
 # 五、嵌入式/硬件 等
@@ -479,6 +520,14 @@ int main()
 - STL：Standard Template Library  标准模板库。
 - 六大组件：容器、算法、迭代器、仿函数、适配器和空间配置器。
 
+## 6.2 vector容器
+
+- 区别于数组，vector容器可以动态扩展。
+
+- vector相关函数的指向位置：
+
+  ![vector1](./image/vector1.png)
+
 
 
 # 7 Linux
@@ -489,7 +538,25 @@ int main()
 
   ![123](./image/123.png)
 
-## 7.2 常用指令
+## 7.2 基本命令
+
+
+
+
+
+## 7.3 目录操作命令
+
+
+
+
+
+## 7.4 文件操作命令
+
+
+
+
+
+
 
 
 
