@@ -120,11 +120,17 @@
 - **break :** 只能在switch语句和循环体里使用，跳出本**层**循环。
 - **continue ：**结束本**次**循环，进行本层循环的下一次循环。
 
+## 1.14 friend
+
+- friend修饰的函数，可以访问私有成员。
+
+  ![](./image/friend1.png)
+
 
 
 # 二、面向对象
 
-# 2.1 虚函数
+## 2.1 虚函数
 
 - 动态绑定地址，实现条件：
 
@@ -136,7 +142,7 @@
 
 - 子类继承父类的地址，父类函数若用virtual修饰后，子类的虚函数指针会绑定自己的地址，从而实现重写父类。
 
-# 2.2 纯虚函数
+## 2.2 纯虚函数
 
 - 多态中，通常父类中虚函数的实现是毫无意义的，主要是调用子类重写的内容，因此可以将虚函数写为纯虚函数。
 
@@ -148,15 +154,15 @@
 
   （2）子类必须重写抽象类中的纯虚函数，否则也属于抽象类。
 
-# 2.3 构造/析构函数
+## 2.3 构造/析构函数
 
-## 2.3.1 构造和析构定义
+### 2.3.1 构造和析构定义
 
 - 构造函数：主要作用于在创建对象时为对象的成员属性赋值，构造函数由编译器自动调用，无需手动调用，但可以重写（初始化操作）。
 
-  #include<iostream>
+  #include< iostream>
   using namespace std;
-  #include<string>
+  #include< string>
 
   class Person {
   public:
@@ -209,17 +215,13 @@
 
 - 析构函数：主要用于对象销毁前系统自动调用（结束自动调用）。连续的几个对象，析构时遵循先入后出的顺序，后构造的对象先析构。
 
-
-
-## 2.3.4 继承中的构造和析构顺序
+### 2.3.2 继承中的构造和析构顺序
 
 - 继承时，白发人送黑发人。
 
   ![继承时的构造和析构](./image/继承中的构造和析构.png)
 
-
-
-## 2.3.3 深/浅拷贝
+## 2.4 深/浅拷贝
 
 - 浅拷贝：简单的赋值拷贝操作。
 
@@ -251,7 +253,7 @@
 
   }
 
-## 2.3.4 this指针
+## 2.5 this指针
 
 - 作用：
 
@@ -279,7 +281,56 @@
   	cout << "Person 的年龄为：" << p1.age << endl;
   }
 
+## 2.6 继承
 
+- 公有继承、保护继承、私有继承。
+
+  ![继承方式](./image/继承方式.png)
+
+- 访问权限：
+
+  （1）**public:**          类内可以访问，类外可以访问；
+
+  （2）**protected:**   类内可以访问，类外不可以访问，继承时儿子可以访问父类的保护内容；
+
+  （3）**private:**        类内可以访问，类外不可以访问，继承时儿子不可以访问父类的私有内容，但是friend可以访问私有内容。
+
+## 2.7 运算符重载
+
+- 对已有的运算符，赋予另一种功能，使其实现新的功能。
+
+-   “ + ” 运算符重载
+
+  （1）成员函数重载：本质：Person  p3  =  p1.operator+ (p2);
+
+  ```c++
+  Person operator+ (Person &p) {
+  	Person temp;
+  	temp.m_A = this->m_A + p.m_A;
+  	temp.m_B = this->m_B + p.m_B;
+  	return temp;
+  }
+  ```
+  （2）全局函数重载：本质：Person  p3  =  operator+ (p1  +  p2);
+
+  Person operator+ (Person &p1,Person &p2) {
+  	Person temp;
+  	temp.m_A = p1.m_A + p2.m_A;
+  	temp.m_B = p1.m_B + p2.m_B;
+  	return temp;
+  }
+
+  （3）不同属性数据相加
+
+  Person  operator+ (Person  &p1 , int  num){
+
+  ​	Person  temp;
+
+     temp.m_A =  p1.m_A  +  num;    // 实现了类中的元素和类外的int类型的数据相加
+
+  }
+
+  
 
 # 三、指针和引用
 
@@ -332,9 +383,9 @@
 - 平均时间复杂度为O(n^2)，平均空间复杂度为O（1），稳定。
 - 参考代码：
 
-#include<iostream>
+#include< iostream>
 using namespace std;
-#include<string>
+#include< string>
 
 void MP(int arr[],int length)
 {
@@ -368,9 +419,9 @@ int main()
 
 - 参考代码：
 
-#include<iostream>
+#include< iostream>
 using namespace std;
-#include<string>
+#include< string>
 
 void QS(int arr[],int left,int right)
 {
@@ -443,7 +494,7 @@ int main()
 - 函数atoi(  const char str  )
 - 参考代码：
 
-#include<iostream>
+#include< iostream>
 using namespace std;
 
 int main()
@@ -462,9 +513,9 @@ int main()
 
 - 参考代码：
 
-#include<iostream>
+#include< iostream>
 using namespace std;
-#include<string>
+#include< string>
 
 int main()
 {
@@ -481,9 +532,9 @@ int main()
 
   如实现：    abcd       ----->       dcba
 
-  #include <iostream>
+  #include < iostream>
   using namespace std;
-  #include <string>
+  #include < string>
   int main()
   {
   	string a, b;
@@ -504,17 +555,17 @@ int main()
 
   如实现       I am a student    ----->   I ma a tneduts
 
-  #include <iostream>
+  #include < iostream>
   using namespace std;
-  #include <string>
-  #include<vector>
-  #include<algorithm>    //  reverse(头，尾)
+  #include < string>
+  #include< vector>
+  #include< algorithm>    //  reverse(头，尾)
 
   int main()
   {
   	// 实现：   I am a student   ----->   I ma a tneduts
   	string in;
-  	vector<string>v;
+  	vector< string>v;
   	cout << "输入一个字符串，输入结束后按回车，再ctrl+z，再按回车退出输入" << endl;
 
   	while (cin>>in) {
@@ -538,7 +589,7 @@ int main()
 - 注意： 链表无法使用二分查找 ；**数组**递增或递减。
 - 参考代码：
 
-#include<iostream>
+#include< iostream>
 using namespace std;
 
 int SearchBin(int arr[],int low,int high,int key)
@@ -620,7 +671,8 @@ int main()
 
 - new 返回的是==该数据类型的指针==。
 
-  
+
+
 
 # 五、嵌入式/硬件 等
 
@@ -775,11 +827,33 @@ int main()
 
   ![vector1](./image/vector1.png)
 
+## 6.3 仿函数
+
+- STL里面内建了一些函数对象，分为算术仿函数、关系仿函数和逻辑仿函数。
+- 需要引入头文件  ： #inclulde< functional>
+
+
+
+## 6.4 常用算法
+
+### 6.4.1 排序  sort
+
+- 升序：sort (   v.begin()  ,  v.end()   );
+- 降序：sort (   v.begin()  ,  v.end()  ，greater< int>( )  );     需要头文件#include< functional>
+
+### 6.4.2 遍历  for_each / transform
+
+- for_each( 头，尾，函数/仿函数) ；                               //遍历容器
+- transform(原头，原尾，新投，函数/仿函数) ;             //搬运容器到另一个容器中
+
 
 
 # 七、C++文件操作
 
-- 需要包含头文件：<fstream>
+## 7.1 概述
+
+- 需要包含头文件：< fstream>
+
 - 文件类型分为两种：文本文件（ASCII码形式存在计算机中） 和 二进制文件（二进制形式存在计算机中，用户一般不能直接读取）
 
 - 操作文件的三大类：
@@ -790,7 +864,67 @@ int main()
 
   （3）fstream  ： 读写操作
 
-  
+## 7.2 文本文件
+
+### 7.2.1 写文件
+
+- 步骤：
+
+  （1）包含头文件    #include< fstream> ;
+
+  （2）创建流对象   ofstream  ofs ;
+
+  （3）打开文件  ofs.open("文件路径"  ,  "打开方式") ;
+
+  （4）写数据   ofs<<"写入的数据";
+
+  （5）关闭文件   ofs.close() ;
+
+- 文件打开方式：
+
+  （1）ios::in    为读文件而打开文件；
+
+  （2）ios::out  为写文件而打开文件；
+
+  （3）ios::ate  初始位置：文件尾；
+
+  （4）ios::app  追加方式写文件；
+
+  （5）ios::trunc  如果文件存在先删除，再创建；
+
+  （6）ios::binary  二进制方式。
+
+### 7.2.2 读文件
+
+- 步骤：
+
+  （1）包含头文件    #include< fstream> ;
+
+  （2）创建流对象   ofstream  ifs ;
+
+  （3）打开文件并判断是否成功打开   ifs.open(  "文件路径"  ,  "打开方式");
+
+  （4）读取；
+
+  （5）关闭文件   ifs.close() ;
+
+- 读取方式：
+
+  （1）    char  buf[1024]  =  {  0  };
+
+  ​		  	while(   ifs  >  buf   ) {
+
+  ​				cout<<  buf <<  endl;
+
+  ​              }
+
+  （2）  char  buf[1024]  =  {  0  };
+
+  ​		  	while(     ifs.getline (buf , sizeof(buf)  )      )   {
+
+  ​				cout<<  buf <<  endl;
+
+  ​              }
 
 # 八、Linux
 
