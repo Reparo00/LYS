@@ -918,20 +918,6 @@ int main()
 
 抗混叠滤波器：输入信号中，超过最高频率的其他频率，特别是与采样频率接近的频率，要通过抗混叠滤波器进行抑制，防止采样时出现频率混叠。
 
-## 5.7 Keil中的printf添加方法
-
-（1）硬件上，USART1_TX/RX 和地线连接至TTL转USB卡即可
-
-（2）打开keil，重写fputc () 函数,写在main.c即可，并添加头文件 #include<stdio.h>
-
-![fputc](./image/printf函数.png)
-
-（3）选中Use Micro LIB
-
-![Use Micro LIB](./image/printf函数2.png)
-
-（4）写   printf("Hello!!");    进行测试，此时keil的printf功能和C语言中的printf一致，也可以打印变量值。
-
 ### 5.6.3 AD7606程序设计
 
 - 采样率设置，以1k为例：
@@ -949,6 +935,22 @@ int main()
   （2）将外部触发信号连接至ARM的PB0引脚；
 
   （3）将外部中断回调函数在main函数重写，然后在中断回调函数里面写自己的功能即可。
+
+## 5.7 Keil中的printf添加方法
+
+（1）硬件上，USART1_TX/RX 和地线连接至TTL转USB卡即可
+
+（2）打开keil，重写fputc () 函数,写在main.c即可，并添加头文件 #include<stdio.h>
+
+![fputc](./image/printf函数.png)
+
+（3）选中Use Micro LIB
+
+![Use Micro LIB](./image/printf函数2.png)
+
+（4）写   printf("Hello!!");    进行测试，此时keil的printf功能和C语言中的printf一致，也可以打印变量值。
+
+
 
 
 # 六、STL
